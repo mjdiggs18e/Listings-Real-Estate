@@ -4,13 +4,15 @@ import {
   BiHome,
   BiBuildings,
   BiBed,
-  BiUserCircle,
   BiLogOut,
   BiLogIn,
+  BiArchive,
 } from "react-icons/bi";
+import { Link } from "react-router-dom";
+import { useAuth } from "../firebase/Firebase";
 
 const SidebarContainer = styled.div`
-  width: 3vw;
+  min-width: 80px;
   height: 100vh;
   border-right: 2px solid #f8f9fa;
   display: flex;
@@ -19,23 +21,48 @@ const SidebarContainer = styled.div`
   color: #fff;
 
   & svg {
-    color: #919191;
+    color: #757373;
     font-size: 22px;
-    padding: 3rem 0;
-  }
-
-  & svg:last-of-type {
-    margin-top: auto;
+    margin: 3rem 0;
+    cursor: pointer;
   }
 `;
 
 const Sidebar = () => {
-  return (
+  const { currentUser, logout } = useAuth();
+  return currentUser ? (
     <SidebarContainer>
-      <BiBed />
-      <BiHome />
-      <BiBuildings />
-      <BiLogIn />
+      <Link to="/">
+        <BiBed />
+      </Link>
+      <Link to="/houses/sell">
+        <BiHome />
+      </Link>
+      <Link to="/houses/rent">
+        <BiBuildings />
+      </Link>
+      <Link to="/houses/saved">
+        <BiArchive />
+      </Link>
+      <BiLogOut onClick={() => logout()} />
+    </SidebarContainer>
+  ) : (
+    <SidebarContainer>
+      <Link to="/">
+        <BiBed />
+      </Link>
+      <Link to="/houses/sell">
+        <BiHome />
+      </Link>
+      <Link to="/houses/rent">
+        <BiBuildings />
+      </Link>
+      <Link to="/houses/saved">
+        <BiArchive />
+      </Link>
+      <Link to="/login">
+        <BiLogIn />
+      </Link>
     </SidebarContainer>
   );
 };
