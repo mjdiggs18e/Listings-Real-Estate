@@ -14,6 +14,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+export const database = firebase.firestore();
+
 const UserContext = createContext();
 
 export function useAuth() {
@@ -57,6 +59,7 @@ export const UserProvider = ({ children }) => {
     login,
     logout,
     resetPassword,
+    database,
   };
 
   return (

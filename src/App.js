@@ -6,6 +6,11 @@ import "@fontsource/open-sans";
 import { UserProvider } from "./firebase/Firebase";
 import Home from "./pages/index";
 import LogIn from "./pages/login";
+import CreateListing from "./pages/createlisting";
+import Sell from "./pages/sell";
+import Rent from "./pages/rent";
+import Saved from "./pages/saved";
+import Signup from "./pages/signup";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -35,6 +40,21 @@ function App() {
             </Route>
             <Route path="/login">
               <LogIn />
+            </Route>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/houses/create">
+              <CreateListing />
+            </Route>
+            <Route path="/houses/sell">
+              <Sell />
+            </Route>
+            <Route path="/houses/rent">
+              <Rent />
+            </Route>
+            <Route path="/houses/saved">
+              <Saved />
             </Route>
           </Switch>
         </Router>

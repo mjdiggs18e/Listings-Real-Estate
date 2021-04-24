@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../firebase/Firebase";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const emailRef = useRef();
@@ -46,6 +47,9 @@ const Login = () => {
           Log In
         </button>
       </form>
+      <Link to="/signup">
+        <p>Signup</p>
+      </Link>
     </div>
   );
 };

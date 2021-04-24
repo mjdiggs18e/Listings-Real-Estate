@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {
+  BiPlus,
   BiHome,
   BiBuildings,
   BiBed,
@@ -32,6 +33,9 @@ const Sidebar = () => {
   const { currentUser, logout } = useAuth();
   return currentUser ? (
     <SidebarContainer>
+      <Link to="/houses/create">
+        <BiPlus />
+      </Link>
       <Link to="/">
         <BiBed />
       </Link>
@@ -56,9 +60,6 @@ const Sidebar = () => {
       </Link>
       <Link to="/houses/rent">
         <BiBuildings />
-      </Link>
-      <Link to="/houses/saved">
-        <BiArchive />
       </Link>
       <Link to="/login">
         <BiLogIn />
