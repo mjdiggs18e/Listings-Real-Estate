@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { useAuth } from "../firebase/Firebase";
 
 const SignUp = () => {
@@ -9,8 +11,45 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Checks to see if passwords match and inputs have value.
-  // If everything works, a new user is created and automatically logged in on submission.
+  const SignupContainer = styled.div`
+    padding: 2rem;
+  `;
+  const SignupTitle = styled.h1`
+    margin-bottom: 6rem;
+  `;
+  const SignupError = styled.p``;
+  const SignupForm = styled.form``;
+  const SignupLabel = styled.label`
+    display: block;
+    margin: 2rem;
+  `;
+  const SignupInput = styled.input`
+    display: block;
+    width: 400px;
+    padding: 0.7rem;
+    outline: none;
+    border: 1px solid #a8b4c1;
+    border-radius: 4px;
+    font-family: "Open Sans";
+    margin-top: 0.5rem;
+
+    &::placeholder {
+      color: #a8b4c1;
+    }
+  `;
+  const SignupButton = styled.button`
+    font-family: "Open Sans";
+    width: 400px;
+    padding: 0.7rem;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color: #326b5b;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  `;
+  const SignupText = styled.p``;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -33,27 +72,35 @@ const SignUp = () => {
   // Signup form
 
   return (
-    <section className="signup-section">
-      <h1>Sign Up</h1>
-      {error && <p className="signup-error">{error}</p>}
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <label>
+    <SignupContainer>
+      <SignupTitle>Sign Up</SignupTitle>
+      {error && <SignupError>{error}</SignupError>}
+      <SignupForm onSubmit={handleSubmit}>
+        <SignupLabel>
           Email
-          <input type="text" ref={emailRef} required />
-        </label>
-        <label>
+          <SignupInput type="text" ref={emailRef} required />
+        </SignupLabel>
+        <SignupLabel>
           Password
-          <input type="password" ref={passwordRef} minLength="6" required />
-        </label>
-        <label>
+          <SignupInput
+            type="password"
+            ref={passwordRef}
+            minLength="6"
+            required
+          />
+        </SignupLabel>
+        <SignupLabel>
           Password Confirmation
-          <input type="password" ref={passwordConfirmationRef} required />
-        </label>
-        <button disabled={loading} className="signup-button" type="submit">
+          <SignupInput type="password" ref={passwordConfirmationRef} required />
+        </SignupLabel>
+        <SignupButton disabled={loading} type="submit">
           Sign Up
-        </button>
-      </form>
-    </section>
+        </SignupButton>
+      </SignupForm>
+      <Link to="/login">
+        <SignupText>Have an account? Click to login</SignupText>
+      </Link>
+    </SignupContainer>
   );
 };
 

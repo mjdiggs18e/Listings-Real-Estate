@@ -11,6 +11,8 @@ import Sell from "./pages/sell";
 import Rent from "./pages/rent";
 import Saved from "./pages/saved";
 import Signup from "./pages/signup";
+import ForgotPassword from "./pages/forgotpassword";
+import PrivateRoute from "./components/PrivateRoute";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,9 +20,14 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;  
     font-family: "Open Sans";
+    color: #333333;
   }
   button {
     font-family: "Open Sans"; 
+  }
+  a {
+    text-decoration: none;
+    color: inherit
   }
 `;
 
@@ -38,12 +45,9 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/login">
-              <LogIn />
-            </Route>
-            <Route path="/signup">
-              <Signup />
-            </Route>
+            <PrivateRoute path="/login" component={LogIn} />
+            <PrivateRoute path="/signup" component={Signup} />
+            <PrivateRoute path="/forgot-password" component={ForgotPassword} />
             <Route path="/houses/create">
               <CreateListing />
             </Route>

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../firebase/Firebase";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Login = () => {
   const emailRef = useRef();
@@ -11,7 +12,45 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
-  // Makes sure the forms all have values in them. If the forms have value with no errors, send the user to the homepage.
+  const LoginContainer = styled.div`
+    padding: 2rem;
+  `;
+  const LoginTitle = styled.h1`
+    margin-bottom: 6rem;
+  `;
+  const LoginError = styled.p``;
+  const LoginForm = styled.form``;
+  const LoginLabel = styled.label`
+    display: block;
+    margin: 2rem;
+  `;
+  const LoginInput = styled.input`
+    display: block;
+    width: 400px;
+    padding: 0.7rem;
+    outline: none;
+    border: 1px solid #a8b4c1;
+    border-radius: 4px;
+    font-family: "Open Sans";
+    margin-top: 0.5rem;
+
+    &::placeholder {
+      color: #a8b4c1;
+    }
+  `;
+  const LoginButton = styled.button`
+    font-family: "Open Sans";
+    width: 400px;
+    padding: 0.7rem;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color: #326b5b;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  `;
+  const LoginText = styled.p``;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,29 +67,35 @@ const Login = () => {
     setLoading(false);
   }
 
-  // Logs in a current user and checks for errors on submit
-
   return (
-    <div className="login-section">
-      <h1>Log In</h1>
-      {error && <p className="login-error">{error}</p>}
-      <form className="login-form" onSubmit={handleSubmit}>
-        <label>
+    <LoginContainer>
+      <LoginTitle>Log In</LoginTitle>
+      {error && <LoginError>{error}</LoginError>}
+      <LoginForm onSubmit={handleSubmit}>
+        <LoginLabel>
           Email
-          <input type="text" ref={emailRef} required />
-        </label>
-        <label>
+          <LoginInput type="text" ref={emailRef} placeholder="Email" required />
+        </LoginLabel>
+        <LoginLabel>
           Password
-          <input type="password" ref={passwordRef} required />
-        </label>
-        <button disabled={loading} className="login-button" type="submit">
+          <LoginInput
+            type="password"
+            ref={passwordRef}
+            placeholder="Password"
+            required
+          />
+        </LoginLabel>
+        <LoginButton disabled={loading} type="submit">
           Log In
-        </button>
-      </form>
-      <Link to="/signup">
-        <p>Signup</p>
+        </LoginButton>
+      </LoginForm>
+      <Link to="/forgot-password">
+        <LoginText>Forgot Password</LoginText>
       </Link>
-    </div>
+      <Link to="/signup">
+        <LoginText>New user? Create an account</LoginText>
+      </Link>
+    </LoginContainer>
   );
 };
 
