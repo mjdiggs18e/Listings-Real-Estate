@@ -7,7 +7,6 @@ import { UserProvider } from "./firebase/Firebase";
 import Home from "./pages/index";
 import LogIn from "./pages/login";
 import CreateListing from "./pages/createlisting";
-import Sell from "./pages/sell";
 import Rent from "./pages/rent";
 import Saved from "./pages/saved";
 import Signup from "./pages/signup";
@@ -50,9 +49,6 @@ function App() {
             <PrivateRoute path="/forgot-password" component={ForgotPassword} />
             <Route path="/houses/create">
               <CreateListing />
-            </Route>
-            <Route path="/houses/sell">
-              <Sell />
             </Route>
             <Route path="/houses/rent">
               <Rent />

@@ -1,6 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "../firebase/Firebase";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import { useHistory } from "react-router-dom";
 
 const CreateContainer = styled.div`
   padding: 2rem;
@@ -13,6 +16,7 @@ const CreateForm = styled.form`
 
 const CreateTitle = styled.h1`
   font-size: 26px;
+  font-weight: 500;
 `;
 const CreateLabel = styled.label`
   margin: 1rem 0;
@@ -73,6 +77,24 @@ const CreateTextarea = styled.textarea`
 `;
 
 const CreateList = () => {
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState(null);
+
+  const types = ["image/png", "image/jpeg"];
+
+  const changeHandler = (e) => {
+    let selected = e.target.files[0];
+
+    if (selected && types.includes(selected.type)) {
+      setFile(selected);
+      setError("");
+    } else {
+      setFile(null);
+      setError("Please select a valid image type");
+    }
+  };
+
+  const history = useHistory();
   const { database } = useAuth();
   const monthlyRent = useRef();
   const securityDeposit = useRef();
@@ -112,6 +134,7 @@ const CreateList = () => {
 
   const addListing = (e) => {
     e.preventDefault();
+    dayjs.extend(relativeTime);
 
     database
       .collection("listings")
@@ -161,15 +184,16 @@ const CreateList = () => {
           ? tourSaturday.current.value
           : "",
         tourSunday: tourSunday.checked ? tourSunday.current.value : "",
+        createdAt: dayjs().unix(),
       })
       .then(() => {
-        alert("Added to database");
+        history.push("/");
       });
   };
 
   return (
     <CreateContainer>
-      <CreateTitle>Listing information</CreateTitle>
+      <CreateTitle>New Listing</CreateTitle>
       <CreateForm onSubmit={addListing}>
         <CreateLabel>
           Monthly Rent
@@ -321,6 +345,10 @@ const CreateList = () => {
             <CreateOption value="tenant">Tenant</CreateOption>
           </CreateSelect>
         </CreateLabel>
+        <div>
+          <input type="file" onChange={changeHandler} />
+          {error && <p>{error}</p>}
+        </div>
         <CreateTitle>Tour availability</CreateTitle>
         <CreateLabel>
           <input type="checkbox" ref={tourMonday} value="monday" />

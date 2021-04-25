@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import {
   BiPlus,
-  BiHome,
   BiBuildings,
   BiBed,
   BiLogOut,
@@ -14,7 +13,7 @@ import { useAuth } from "../firebase/Firebase";
 
 const SidebarContainer = styled.div`
   min-width: 80px;
-  height: 100vh;
+  min-height: 100vh;
   border-right: 2px solid #f8f9fa;
   display: flex;
   flex-direction: column;
@@ -39,9 +38,6 @@ const Sidebar = () => {
       <Link to="/">
         <BiBed />
       </Link>
-      <Link to="/houses/sell">
-        <BiHome />
-      </Link>
       <Link to="/houses/rent">
         <BiBuildings />
       </Link>
@@ -54,9 +50,6 @@ const Sidebar = () => {
     <SidebarContainer>
       <Link to="/">
         <BiBed />
-      </Link>
-      <Link to="/houses/sell">
-        <BiHome />
       </Link>
       <Link to="/houses/rent">
         <BiBuildings />

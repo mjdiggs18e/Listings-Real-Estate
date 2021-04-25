@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BiSearchAlt } from "react-icons/bi";
+import RetrieveListings from "./RetrieveListings";
 
 const ListingBarContainer = styled.div`
   width: 47vw;
@@ -32,6 +33,7 @@ const ListingBar = () => {
           <ListingSearchInput type="text" />
         </form>
       </ListingSearchBar>
+      <RetrieveListings />
     </ListingBarContainer>
   );
 };
