@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, createContext } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD5oY0ASfeBj_MpuaI2iX0gQdUDzyvJmHQ",
@@ -15,6 +16,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const database = firebase.firestore();
+export const storage = firebase.storage();
 
 const UserContext = createContext();
 
@@ -60,6 +62,7 @@ export const UserProvider = ({ children }) => {
     logout,
     resetPassword,
     database,
+    storage,
   };
 
   return (

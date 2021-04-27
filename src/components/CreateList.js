@@ -77,27 +77,11 @@ const CreateTextarea = styled.textarea`
 `;
 
 const CreateList = () => {
-  const [file, setFile] = useState(null);
-  const [error, setError] = useState(null);
-
-  const types = ["image/png", "image/jpeg"];
-
-  const changeHandler = (e) => {
-    let selected = e.target.files[0];
-
-    if (selected && types.includes(selected.type)) {
-      setFile(selected);
-      setError("");
-    } else {
-      setFile(null);
-      setError("Please select a valid image type");
-    }
-  };
-
   const history = useHistory();
-  const { database } = useAuth();
+  const { database, storage } = useAuth();
   const monthlyRent = useRef();
   const securityDeposit = useRef();
+  const address = useRef();
   const bedrooms = useRef();
   const bathrooms = useRef();
   const squarefeet = useRef();
@@ -132,6 +116,37 @@ const CreateList = () => {
   const tourSaturday = useRef();
   const tourSunday = useRef();
 
+  const [error, setError] = useState(null);
+  const [url, setUrl] = useState([]);
+
+  const allUrls = [];
+
+  const handleChange = (e) => {
+    let totalfiles = e.target.files;
+    for (let i = 0; i < totalfiles.length; i++) {
+      let selected = e.target.files[i];
+      let types = ["image/png", "image/jpeg"];
+      if (selected && types.includes(selected.type)) {
+        setError("");
+        let storageRef = storage.ref(selected.name);
+        let storageDownload = storage.ref().child(selected.name);
+        storageRef
+          .put(selected)
+          .then(() => {
+            console.log("File uploaded");
+          })
+          .then(() => {
+            storageDownload.getDownloadURL().then((url) => {
+              allUrls.push(url);
+            });
+          });
+      } else {
+        setError("Please select a valid image type");
+      }
+    }
+    setUrl(allUrls);
+  };
+
   const addListing = (e) => {
     e.preventDefault();
     dayjs.extend(relativeTime);
@@ -141,6 +156,7 @@ const CreateList = () => {
       .add({
         monthlyRent: monthlyRent.current.value,
         securityDeposit: securityDeposit.current.value,
+        address: address.current.value,
         bedrooms: bedrooms.current.value,
         bathrooms: bathrooms.current.value,
         squarefeet: squarefeet.current.value,
@@ -185,6 +201,7 @@ const CreateList = () => {
           : "",
         tourSunday: tourSunday.checked ? tourSunday.current.value : "",
         createdAt: dayjs().unix(),
+        imageUrl: url,
       })
       .then(() => {
         history.push("/");
@@ -196,12 +213,16 @@ const CreateList = () => {
       <CreateTitle>New Listing</CreateTitle>
       <CreateForm onSubmit={addListing}>
         <CreateLabel>
-          Monthly Rent
+          Monthly Rent or Total Cost
           <CreateInput type="text" ref={monthlyRent} required />
         </CreateLabel>
         <CreateLabel>
           Security deposit
           <CreateInput ref={securityDeposit} required />
+        </CreateLabel>
+        <CreateLabel>
+          Address
+          <CreateInput ref={address} required />
         </CreateLabel>
         <CreateSection>
           <CreateLabel>
@@ -322,6 +343,11 @@ const CreateList = () => {
           Lease summary
           <CreateTextarea type="text" ref={leaseSummary} />
         </CreateLabel>
+        <CreateTitle>Housing Images</CreateTitle>
+        <div>
+          <input type="file" onChange={handleChange} multiple required />
+          {error && <p>{error}</p>}
+        </div>
         <CreateTitle>Your contact information</CreateTitle>
         <CreateLabel>
           Name
@@ -345,10 +371,6 @@ const CreateList = () => {
             <CreateOption value="tenant">Tenant</CreateOption>
           </CreateSelect>
         </CreateLabel>
-        <div>
-          <input type="file" onChange={changeHandler} />
-          {error && <p>{error}</p>}
-        </div>
         <CreateTitle>Tour availability</CreateTitle>
         <CreateLabel>
           <input type="checkbox" ref={tourMonday} value="monday" />
