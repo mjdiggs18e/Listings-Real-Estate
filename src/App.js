@@ -14,6 +14,7 @@ import ForgotPassword from "./pages/forgotpassword";
 import PrivateRoute from "./components/PrivateRoute";
 
 const GlobalStyle = createGlobalStyle`
+
   body {
     padding: 0;
     margin: 0;
