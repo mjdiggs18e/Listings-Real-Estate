@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import {
   MapContainer,
@@ -8,7 +8,7 @@ import {
   useMapEvents,
 } from "react-leaflet";
 
-const MapBar = ({ cords }) => {
+const MapBar = () => {
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const map = useMapEvents({
@@ -31,7 +31,7 @@ const MapBar = ({ cords }) => {
   return (
     <MapContainer
       style={{ height: "100vh", width: "50vw" }}
-      center={cords ? [cords[0].y, cords[0].x] : [38.6582, -77.2497]}
+      center={[38.6582, -77.2497]}
       zoom={19}
       scrollWheelZoom={false}
     >
