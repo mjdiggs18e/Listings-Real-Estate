@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { useAuth } from "../firebase/Firebase";
 
 const ListingContainer = styled.div`
@@ -63,18 +64,20 @@ const RetrieveListings = () => {
     <ListingContainer>
       {posts.map((post) => {
         return (
-          <PostContainer>
-            <PostImage src={post[0].imageUrl[0]} alt="" />
-            <PostBody>
-              <PostCost>{post[0].monthlyRent}</PostCost>
-              <PostDiv>
-                <PostText>{post[0].bedrooms} Bedrooms</PostText>
-                <PostText>{post[0].bathrooms} Bathrooms</PostText>
-                <PostText>{post[0].squarefeet} Square Feet</PostText>
-              </PostDiv>
-              <PostText>{post[0].address}</PostText>
-            </PostBody>
-          </PostContainer>
+          <Link to={`/listing/${post[0].address}`}>
+            <PostContainer key={post[0].imageUrl[0]} onCl>
+              <PostImage src={post[0].imageUrl[0]} alt="" />
+              <PostBody>
+                <PostCost>{post[0].monthlyRent}</PostCost>
+                <PostDiv>
+                  <PostText>{post[0].bedrooms} Bedrooms</PostText>
+                  <PostText>{post[0].bathrooms} Bathrooms</PostText>
+                  <PostText>{post[0].squarefeet} Square Feet</PostText>
+                </PostDiv>
+                <PostText>{post[0].address}</PostText>
+              </PostBody>
+            </PostContainer>
+          </Link>
         );
       })}
     </ListingContainer>

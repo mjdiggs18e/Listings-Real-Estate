@@ -12,8 +12,8 @@ const MapBar = ({ cords }) => {
   function LocationMarker() {
     const [position, setPosition] = useState(null);
     const map = useMapEvents({
-      viewreset() {
-        map.flyTo([cords[0].y, cords[0].x]);
+      click() {
+        map.locate();
       },
       locationfound(e) {
         setPosition(e.latlng);
@@ -27,6 +27,7 @@ const MapBar = ({ cords }) => {
       </Marker>
     );
   }
+
   return (
     <MapContainer
       style={{ height: "100vh", width: "50vw" }}

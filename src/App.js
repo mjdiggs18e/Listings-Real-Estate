@@ -10,6 +10,7 @@ import CreateListing from "./pages/createlisting";
 import Rent from "./pages/rent";
 import Saved from "./pages/saved";
 import Signup from "./pages/signup";
+import SoloListing from "./pages/sololistings";
 import ForgotPassword from "./pages/forgotpassword";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -56,6 +57,9 @@ function App() {
             </Route>
             <Route path="/houses/saved">
               <Saved />
+            </Route>
+            <Route path="/listing/:id">
+              <SoloListing />
             </Route>
           </Switch>
         </Router>
