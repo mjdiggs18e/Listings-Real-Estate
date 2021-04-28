@@ -5,6 +5,9 @@ import { useAuth } from "../firebase/Firebase";
 
 const ListingContainer = styled.div`
   margin-top: 2rem;
+  @media (min-width: 320px) {
+    margin-top: 1rem;
+  }
 `;
 const PostContainer = styled.div`
   display: flex;
@@ -13,12 +16,25 @@ const PostContainer = styled.div`
   -webkit-box-shadow: -2px 0px 20px 2px rgba(0, 0, 0, 0.1);
   box-shadow: -2px 0px 20px 2px rgba(0, 0, 0, 0.1);
   margin: 2rem 0;
-  width: 40vw;
+  width: auto;
+
+  @media (min-width: 320px) {
+    margin: 1rem 0;
+    width: 300px;
+    align-items: center;
+  }
+
+}
 `;
 const PostImage = styled.img`
   border-radius: 4px;
   width: auto;
   height: 150px;
+
+  @media (min-width: 320px) {
+    width: 200px;
+    height: auto;
+  }
 `;
 const PostBody = styled.div`
   margin: 0 1rem;
@@ -65,7 +81,7 @@ const RetrieveListings = () => {
       {posts.map((post) => {
         return (
           <Link to={`/listing/${post[0].address}`}>
-            <PostContainer key={post[0].imageUrl[0]} onCl>
+            <PostContainer key={post[0].imageUrl[0]}>
               <PostImage src={post[0].imageUrl[0]} alt="" />
               <PostBody>
                 <PostCost>{post[0].monthlyRent}</PostCost>

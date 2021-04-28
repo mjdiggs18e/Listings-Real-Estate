@@ -10,7 +10,12 @@ import {
 import MapBar from "../components/MapBar";
 import dayjs, { relativeTime } from "dayjs";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
+import styled from "styled-components";
 const provider = new OpenStreetMapProvider();
+
+const ListingContainer = styled.div`
+  width: 47vw;
+`;
 
 const ListingDetails = ({ id }) => {
   const [postInformation, setPostInformation] = useState([]);
@@ -42,7 +47,13 @@ const ListingDetails = ({ id }) => {
 
   function LocationMarker() {
     return coordinates === null ? null : (
-      <Marker position={[coordinates[0].y, coordinates[0].x]}>
+      <Marker
+        position={
+          coordinates[0]?.x
+            ? [coordinates[0].y, coordinates[0].x]
+            : [38.6, 75.3]
+        }
+      >
         <Popup>{id}</Popup>
       </Marker>
     );
@@ -52,24 +63,36 @@ const ListingDetails = ({ id }) => {
     <h1>Loading</h1>
   ) : (
     <>
-      <h1>Listing Details for {id}</h1>
-      <MapContainer
-        style={{ height: "100vh", width: "50vw" }}
-        center={[coordinates[0].y, coordinates[0].x]}
-        zoom={19}
-        scrollWheelZoom={false}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-        <LocationMarker />
-      </MapContainer>
+      <ListingContainer>
+        <h1>Listing Details for {id}</h1>
+      </ListingContainer>
+      {coordinates[0]?.x ? (
+        <MapContainer
+          style={{ height: "100vh", width: "50vw" }}
+          center={[coordinates[0].y, coordinates[0].x]}
+          zoom={19}
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <LocationMarker />
+        </MapContainer>
+      ) : (
+        <MapContainer
+          style={{ height: "100vh", width: "50vw" }}
+          center={[38.6, 75.3]}
+          zoom={19}
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <LocationMarker />
+        </MapContainer>
+      )}
     </>
   );
 };
