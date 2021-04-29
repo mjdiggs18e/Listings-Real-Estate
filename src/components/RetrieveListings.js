@@ -5,8 +5,11 @@ import { useAuth } from "../firebase/Firebase";
 
 const ListingContainer = styled.div`
   margin-top: 2rem;
-  @media (min-width: 320px) {
-    margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 425px) {
+    margin-top: 0.5rem;
   }
 `;
 const PostContainer = styled.div`
@@ -17,11 +20,20 @@ const PostContainer = styled.div`
   box-shadow: -2px 0px 20px 2px rgba(0, 0, 0, 0.1);
   margin: 2rem 0;
   width: 800px;
+  @media (max-width: 425px) {
+    width: 250px;
+    margin: 1rem 0;
+  }
 `;
 const PostImage = styled.img`
   border-radius: 4px;
   width: auto;
   height: 150px;
+
+  @media (max-width: 425px) {
+    width: 250px;
+    height: auto;
+  }
 `;
 
 const PostBody = styled.div`
@@ -31,9 +43,15 @@ const PostCost = styled.h1`
   font-weight: 500;
   margin: 0.5rem;
   font-size: 22px;
+  @media (max-width: 425px) {
+    font-size: 16px;
+  }
 `;
 const PostText = styled.p`
   margin: 0.5rem;
+  @media (max-width: 425px) {
+    font-size: 10px;
+  }
 `;
 const PostDiv = styled.div`
   display: flex;
@@ -76,7 +94,7 @@ const RetrieveListings = () => {
                 <PostDiv>
                   <PostText>{post[0].bedrooms} Bedrooms</PostText>
                   <PostText>{post[0].bathrooms} Bathrooms</PostText>
-                  <PostText>{post[0].squarefeet} Square Feet</PostText>
+                  <PostText>{post[0].squarefeet} SqFt</PostText>
                 </PostDiv>
                 <PostText>{post[0].address}</PostText>
               </PostBody>

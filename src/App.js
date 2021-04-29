@@ -33,6 +33,10 @@ const GlobalStyle = createGlobalStyle`
 
 const AppContainer = styled.div`
   display: flex;
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+  }
 `;
 
 function App() {

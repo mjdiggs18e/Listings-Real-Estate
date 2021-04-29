@@ -20,6 +20,16 @@ const SidebarContainer = styled.div`
   align-items: center;
   color: #fff;
 
+  @media (max-width: 425px) {
+    min-width: unset;
+    min-height: unset;
+    border-right: 0;
+    flex-direction: row;
+    height: 40px;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
   & svg {
     color: #757373;
     font-size: 22px;
