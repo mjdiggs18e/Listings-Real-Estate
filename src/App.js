@@ -14,13 +14,14 @@ import ForgotPassword from "./pages/forgotpassword";
 import PrivateRoute from "./components/PrivateRoute";
 
 const GlobalStyle = createGlobalStyle`
-
+  
   body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;  
     font-family: "Open Sans";
     color: #333333;
+    background-color: #f8f9fa;
   }
   button {
     font-family: "Open Sans"; 
@@ -34,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
 const AppContainer = styled.div`
   display: flex;
 
-  @media (max-width: 425px) {
+  @media (max-width: 1360px) {
     flex-direction: column;
   }
 `;

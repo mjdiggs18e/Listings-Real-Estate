@@ -10,11 +10,20 @@ const ListingBarContainer = styled.div`
   width: 47vw;
   padding: 2rem;
   background-color: #f8f9fa;
+  @media (max-width: 1360px) {
+    width: 100vw;
+    min-height: 100%;
+    padding: 0;
+    margin: 
 `;
 
 const ListingBarFixed = styled.div`
   position: fixed;
   right: 0;
+
+  @media (max-width: 1360px) {
+    display: none;
+  }
 `;
 
 function Rent() {

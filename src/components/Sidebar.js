@@ -19,8 +19,9 @@ const SidebarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   color: #fff;
+  background-color: #ffffff;
 
-  @media (max-width: 425px) {
+  @media (max-width: 1360px) {
     min-width: unset;
     min-height: unset;
     border-right: 0;
