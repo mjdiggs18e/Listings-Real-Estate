@@ -13,9 +13,17 @@ const SignUp = () => {
 
   const SignupContainer = styled.div`
     padding: 2rem;
+
+    @media (min-width: 320px) and (max-width: 768px) {
+      padding: 0;
+      text-align: center;
+    }
   `;
   const SignupTitle = styled.h1`
     margin-bottom: 6rem;
+    @media (min-width: 320px) and (max-width: 768px) {
+      margin-bottom: 2rem;
+    }
   `;
   const SignupError = styled.p``;
   const SignupForm = styled.form``;
@@ -33,6 +41,10 @@ const SignUp = () => {
     font-family: "Open Sans";
     margin-top: 0.5rem;
 
+    @media (min-width: 320px) and (max-width: 768px) {
+      width: 200px;
+    }
+
     &::placeholder {
       color: #a8b4c1;
     }
@@ -48,6 +60,10 @@ const SignUp = () => {
     color: #fff;
     cursor: pointer;
     font-size: 14px;
+
+    @media (min-width: 320px) and (max-width: 768px) {
+      width: 200px;
+    }
   `;
   const SignupText = styled.p``;
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import MapBar from "../components/MapBar";
 import styled from "styled-components";
 import Sidebar from "../components/Sidebar";

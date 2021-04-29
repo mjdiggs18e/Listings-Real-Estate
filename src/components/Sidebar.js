@@ -1,13 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  BiPlus,
-  BiBuildings,
-  BiBed,
-  BiLogOut,
-  BiLogIn,
-  BiArchive,
-} from "react-icons/bi";
+import { BiPlus, BiBuildings, BiBed, BiLogOut, BiLogIn } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useAuth } from "../firebase/Firebase";
 

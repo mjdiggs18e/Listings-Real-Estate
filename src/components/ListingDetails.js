@@ -18,6 +18,12 @@ const provider = new OpenStreetMapProvider();
 const ListingContainer = styled.div`
   width: 47vw;
   padding: 1rem;
+
+  @media (max-width: 1374px) {
+    width: 100vw;
+    padding: 0;
+    text-align: center;
+  }
 `;
 
 const ListingTitle = styled.h1`
@@ -25,6 +31,9 @@ const ListingTitle = styled.h1`
   text-align: center;
   font-size: 26px;
   margin-top: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
 `;
 
 const ListingBody = styled.div``;
@@ -35,11 +44,18 @@ const ListingPictures = styled.div`
 
   & img {
     width: 400px;
+    @media (max-width: 768px) {
+      width: 200px;
+    }
   }
 `;
 
 const ListingInformation = styled.div`
   margin: 2rem;
+
+  @media (max-width: 768px) {
+    margin: 1rem;
+  }
 `;
 
 const ListingCost = styled.h1`
@@ -55,6 +71,10 @@ const ListingFlex = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ListingText = styled.p`
@@ -63,6 +83,17 @@ const ListingText = styled.p`
 
 const ListingTitles = styled.h2`
   margin: 2rem 0;
+  @media (max-width: 768px) {
+    margin: 1rem;
+  }
+`;
+
+const MobileMap = styled.div`
+  display: none;
+  @media (min-width: 1375px) {
+    position: relative;
+    display: flex;
+  }
 `;
 
 // End of styled components
@@ -207,18 +238,20 @@ const ListingDetails = ({ id }) => {
         </ListingBody>
       </ListingContainer>
       {coordinates[0]?.x ? (
-        <MapContainer
-          style={{ height: "100vh", width: "50vw" }}
-          center={[coordinates[0].y, coordinates[0].x]}
-          zoom={19}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <LocationMarker />
-        </MapContainer>
+        <MobileMap>
+          <MapContainer
+            style={{ height: "100vh", width: "50vw" }}
+            center={[coordinates[0].y, coordinates[0].x]}
+            zoom={19}
+            scrollWheelZoom={false}
+          >
+            <TileLayer
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <LocationMarker />
+          </MapContainer>
+        </MobileMap>
       ) : (
         <MapContainer
           style={{ height: "100vh", width: "50vw" }}

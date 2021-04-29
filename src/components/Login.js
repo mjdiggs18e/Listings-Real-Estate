@@ -14,9 +14,17 @@ const Login = () => {
 
   const LoginContainer = styled.div`
     padding: 2rem;
+    @media (min-width: 320px) and (max-width: 768px) {
+      padding: 0;
+      text-align: center;
+    }
   `;
+
   const LoginTitle = styled.h1`
     margin-bottom: 6rem;
+    @media (min-width: 320px) and (max-width: 768px) {
+      margin-bottom: 2rem;
+    }
   `;
   const LoginError = styled.p``;
   const LoginForm = styled.form``;
@@ -34,6 +42,10 @@ const Login = () => {
     font-family: "Open Sans";
     margin-top: 0.5rem;
 
+    @media (min-width: 320px) and (max-width: 768px) {
+      width: 200px;
+    }
+
     &::placeholder {
       color: #a8b4c1;
     }
@@ -49,6 +61,10 @@ const Login = () => {
     color: #fff;
     cursor: pointer;
     font-size: 14px;
+
+    @media (min-width: 320px) and (max-width: 768px) {
+      width: 200px;
+    }
   `;
   const LoginText = styled.p``;
 

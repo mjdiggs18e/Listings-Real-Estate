@@ -7,6 +7,9 @@ import { useHistory } from "react-router-dom";
 
 const CreateContainer = styled.div`
   padding: 2rem;
+  @media (max-width: 768px) {
+    padding: 0rem;
+  }
 `;
 
 const CreateForm = styled.form`
@@ -30,6 +33,9 @@ const CreateInput = styled.input`
   border-radius: 4px;
   font-family: "Open Sans";
   margin-top: 0.5rem;
+  @media (max-width: 768px) {
+    width: 200px;
+  }
 `;
 const CreateButton = styled.button`
   font-family: "Open Sans";
@@ -74,6 +80,9 @@ const CreateTextarea = styled.textarea`
   margin-top: 0.5rem;
   resize: none;
   height: 100px;
+  @media (max-width: 768px) {
+    width: 200px;
+  }
 `;
 
 const CreateList = () => {
