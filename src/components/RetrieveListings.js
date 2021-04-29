@@ -32,7 +32,7 @@ const PostImage = styled.img`
 
   @media (max-width: 425px) {
     width: 250px;
-    height: auto;
+    height: 200px;
   }
 `;
 
