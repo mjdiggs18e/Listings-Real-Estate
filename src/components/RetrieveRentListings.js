@@ -39,7 +39,7 @@ const PostDiv = styled.div`
   display: flex;
 `;
 
-const RetrieveListings = () => {
+const RetrieveRentListings = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { database } = useAuth();
@@ -47,7 +47,8 @@ const RetrieveListings = () => {
   useEffect(() => {
     const listings = database
       .collection("listings")
-      .where("leaseDuration", "==", "rent_to_own")
+      .orderBy("leaseDuration", "desc")
+      .where("leaseDuration", "!=", "rent_to_own")
       .onSnapshot((querySnapshot) => {
         const items = [];
         querySnapshot.forEach((doc) => {
@@ -88,4 +89,4 @@ const RetrieveListings = () => {
   );
 };
 
-export default RetrieveListings;
+export default RetrieveRentListings;

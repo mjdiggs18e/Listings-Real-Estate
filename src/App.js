@@ -8,7 +8,6 @@ import Home from "./pages/index";
 import LogIn from "./pages/login";
 import CreateListing from "./pages/createlisting";
 import Rent from "./pages/rent";
-import Saved from "./pages/saved";
 import Signup from "./pages/signup";
 import SoloListing from "./pages/sololistings";
 import ForgotPassword from "./pages/forgotpassword";
@@ -34,10 +33,6 @@ const GlobalStyle = createGlobalStyle`
 
 const AppContainer = styled.div`
   display: flex;
-
-  @media (min-width: 320px) {
-    flex-direction: column;
-  }
 `;
 
 function App() {
@@ -58,9 +53,6 @@ function App() {
             </Route>
             <Route path="/houses/rent">
               <Rent />
-            </Route>
-            <Route path="/houses/saved">
-              <Saved />
             </Route>
             <Route path="/listing/:id">
               <SoloListing />
