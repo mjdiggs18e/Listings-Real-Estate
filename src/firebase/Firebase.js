@@ -5,12 +5,12 @@ import "firebase/firestore";
 import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID,
+    apiKey: "AIzaSyCeeBRcdqKKR1goFtZ3CazY_ynqKnkOGZo",
+    authDomain: "listingreproduction.firebaseapp.com",
+    projectId: "listingreproduction",
+    storageBucket: "listingreproduction.appspot.com",
+    messagingSenderId: "524067399148",
+    appId: "1:524067399148:web:3e70524e9137e0abeb8cc9",
 };
 
 firebase.initializeApp(firebaseConfig);
