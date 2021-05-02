@@ -139,16 +139,11 @@ const CreateList = () => {
         setError("");
         let storageRef = storage.ref(selected.name);
         let storageDownload = storage.ref().child(selected.name);
-        storageRef
-          .put(selected)
-          .then(() => {
-            console.log("File uploaded");
-          })
-          .then(() => {
-            storageDownload.getDownloadURL().then((url) => {
-              allUrls.push(url);
-            });
+        storageRef.put(selected).then(() => {
+          storageDownload.getDownloadURL().then((url) => {
+            allUrls.push(url);
           });
+        });
       } else {
         setError("Please select a valid image type");
       }

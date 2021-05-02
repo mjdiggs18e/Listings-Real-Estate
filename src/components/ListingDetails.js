@@ -122,13 +122,9 @@ const ListingDetails = ({ id }) => {
         });
         setCoordinates(results);
         setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }, []);
 
-  console.log(postInformation);
   function LocationMarker() {
     return coordinates === null ? null : (
       <Marker
