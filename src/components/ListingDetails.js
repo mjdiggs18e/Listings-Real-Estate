@@ -198,23 +198,25 @@ const ListingDetails = ({ id }) => {
                 <ListingText>{post.description}</ListingText>
                 <ListingTitles>Features</ListingTitles>
                 <ListingFlex>
-                  <ListingText>{post.ac ? "A/C" : ""}</ListingText>
-                  <ListingText>{post.balcony ? "Balcony" : ""}</ListingText>
-                  <ListingText>{post.furnished ? "Furnished" : ""}</ListingText>
+                  <ListingText>{post.ac ? "A/C" : null}</ListingText>
+                  <ListingText>{post.balcony ? "Balcony" : null}</ListingText>
                   <ListingText>
-                    {post.garageParking ? "Garage parking" : ""}
+                    {post.furnished ? "Furnished" : null}
                   </ListingText>
                   <ListingText>
-                    {post.hardwoodFloor ? "Hardwood floors" : ""}
+                    {post.garageParking ? "Garage parking" : null}
                   </ListingText>
                   <ListingText>
-                    {post.laundry ? "Laundry unit" : ""}
+                    {post.hardwoodFloor ? "Hardwood floors" : null}
                   </ListingText>
                   <ListingText>
-                    {post.wheelchairAccess ? "Wheelchair accessibility" : ""}
+                    {post.laundry ? "Laundry unit" : null}
                   </ListingText>
                   <ListingText>
-                    {post.pets ? "Pets are allowed" : ""}
+                    {post.wheelchairAccess ? "Wheelchair accessibility" : null}
+                  </ListingText>
+                  <ListingText>
+                    {post.pets ? "Pets are allowed" : null}
                   </ListingText>
                 </ListingFlex>
                 <ListingTitles>Housing and Contact Information</ListingTitles>

@@ -57,7 +57,7 @@ const Login = () => {
     outline: none;
     border: none;
     border-radius: 4px;
-    background-color: #326b5b;
+    background-color: #0f7173;
     color: #fff;
     cursor: pointer;
     font-size: 14px;

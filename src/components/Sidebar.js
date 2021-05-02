@@ -7,25 +7,24 @@ import { useAuth } from "../firebase/Firebase";
 const SidebarContainer = styled.div`
   min-width: 80px;
   min-height: 100vh;
-  border-right: 2px solid #f8f9fa;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #fff;
-  background-color: #ffffff;
+  background-color: #0f7173;
 
   @media (max-width: 1360px) {
     min-width: unset;
     min-height: unset;
     border-right: 0;
     flex-direction: row;
-    height: 40px;
+    height: 60px;
     justify-content: space-between;
     padding: 0 1rem;
   }
 
   & svg {
-    color: #757373;
+    color: #ffffff;
     font-size: 22px;
     margin: 3rem 0;
     cursor: pointer;
@@ -45,7 +44,7 @@ const Sidebar = () => {
       <Link to="/houses/rent">
         <BiBuildings />
       </Link>
-      <Link to="/houses/saved">
+      <Link to="/">
         <BiLogOut onClick={() => logout()} />
       </Link>
     </SidebarContainer>
