@@ -9,6 +9,8 @@ const ListingBarContainer = styled.div`
   width: 47vw;
   padding: 1rem;
   background-color: #f8f9fa;
+  position: relative;
+  margin-left: 80px;
   @media (max-width: 1360px) {
     width: 100vw;
     min-height: 100%;

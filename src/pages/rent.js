@@ -8,13 +8,15 @@ import RetrieveRentListings from "../components/RetrieveRentListings";
 
 const ListingBarContainer = styled.div`
   width: 47vw;
-  padding: 2rem;
+  padding: 1rem;
+  margin-left: 80px;
   background-color: #f8f9fa;
   @media (max-width: 1360px) {
     width: 100vw;
     min-height: 100%;
     padding: 0;
-    margin: 
+    margin: 0;
+  }
 `;
 
 const ListingBarFixed = styled.div`

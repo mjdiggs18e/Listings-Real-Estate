@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { BiSearchAlt } from "react-icons/bi";
 import { useAuth } from "../firebase/Firebase";
+import Loading from "./Loading";
 
 const ListingContainer = styled.div`
   margin-top: 2rem;
@@ -91,10 +93,33 @@ const PostDiv = styled.div`
   display: flex;
 `;
 
+const PostForm = styled.form`
+  display: flex;
+  align-items: center;
+`;
+
+const PostInput = styled.input`
+  width: 200px;
+  padding: 0.3rem;
+  outline: none;
+  border: 1px solid #a8b4c1;
+  border-radius: 4px;
+  font-family: "Open Sans";
+  margin-left: 10px;
+`;
+
 const RetrieveListings = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { database } = useAuth();
+
+  const searchTerm = useRef();
+  const [search, setSearch] = useState(" ");
+
+  const searchLookup = (e) => {
+    e.preventDefault();
+    setSearch(searchTerm.current.value.toLowerCase());
+  };
 
   useEffect(() => {
     const listings = database
@@ -115,27 +140,38 @@ const RetrieveListings = () => {
   }, []);
 
   return loading ? (
-    <h1>Loading Listings</h1>
+    <Loading />
   ) : (
     <ListingContainer>
-      {posts.map((post) => {
-        return (
-          <Link to={`/listing/${post[0].address}`}>
-            <PostContainer key={post[0].imageUrl[0]}>
-              <PostImage src={post[0].imageUrl[0]} alt="" />
-              <PostBody>
-                <PostCost>{post[0].monthlyRent}</PostCost>
-                <PostDiv>
-                  <PostText>{post[0].bedrooms} Bedrooms</PostText>
-                  <PostText>{post[0].bathrooms} Bathrooms</PostText>
-                  <PostText>{post[0].squarefeet} SqFt</PostText>
-                </PostDiv>
-                <PostText>{post[0].address}</PostText>
-              </PostBody>
-            </PostContainer>
-          </Link>
-        );
-      })}
+      <PostForm>
+        <BiSearchAlt size="22px" />
+        <PostInput
+          type="text"
+          ref={searchTerm}
+          onChange={searchLookup}
+          placeholder="Search for an Address"
+        />
+      </PostForm>
+      {posts
+        .map((post) => {
+          return (
+            <Link to={`/listing/${post[0].address}`}>
+              <PostContainer key={post[0].imageUrl[0]}>
+                <PostImage src={post[0].imageUrl[0]} alt="" />
+                <PostBody>
+                  <PostCost>{post[0].monthlyRent}</PostCost>
+                  <PostDiv>
+                    <PostText>{post[0].bedrooms} Bedrooms</PostText>
+                    <PostText>{post[0].bathrooms} Bathrooms</PostText>
+                    <PostText>{post[0].squarefeet} SqFt</PostText>
+                  </PostDiv>
+                  <PostText>{post[0].address}</PostText>
+                </PostBody>
+              </PostContainer>
+            </Link>
+          );
+        })
+        .filter((lookup) => lookup.props.to.toLowerCase().includes(search))}
     </ListingContainer>
   );
 };

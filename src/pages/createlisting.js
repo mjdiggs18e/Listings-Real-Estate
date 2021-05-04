@@ -8,10 +8,20 @@ const CreateContainer = styled.div`
   width: 75vw;
 `;
 
+const SidebarContainer = styled.div`
+  position: fixed;
+
+  @media (max-width: 1360px) {
+    position: unset;
+  }
+`;
+
 const CreateListing = () => {
   return (
     <>
-      <Sidebar />
+      <SidebarContainer>
+        <Sidebar />
+      </SidebarContainer>
       <CreateContainer>
         <CreateList />
       </CreateContainer>

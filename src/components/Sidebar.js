@@ -12,8 +12,10 @@ const SidebarContainer = styled.div`
   align-items: center;
   color: #fff;
   background-color: #0f7173;
+  position: fixed;
 
   @media (max-width: 1360px) {
+    position: unset;
     min-width: unset;
     min-height: unset;
     border-right: 0;
