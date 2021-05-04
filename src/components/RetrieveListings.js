@@ -16,6 +16,7 @@ const ListingContainer = styled.div`
   }
   @media (min-width: 1025px) and (max-width: 1360px) {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
